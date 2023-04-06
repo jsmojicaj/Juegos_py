@@ -1,6 +1,6 @@
 import random
 nombre=input("Escoge: piedra, papel o tijera => ")
-
+nombre=nombre.lower() #Hace que las mayusculas se vuelvan minusculas. TIP, de min->may se usa nombre.upper()
 PC=random.randint(1,3)
 if PC==1:
     PC_choise="piedra"
