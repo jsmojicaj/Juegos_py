@@ -1,22 +1,23 @@
 import random
 nombre=input("Escoge: piedra, papel o tijera => ")
-nombre=nombre.lower() #Hace que las mayusculas se vuelvan minusculas. TIP, de min->may se usa nombre.upper()
+nombre=nombre.lower() #Hace que las mayusculas se vuelvan minusculas. 
+opciones=("piedra","papel","tijera") #tupla de las opciones
 PC=random.randint(1,3)
 if PC==1:
-    PC_choise="piedra"
+    PC_choise=opciones[0]
 elif PC==2:
-    PC_choise="papel"
+    PC_choise=opciones[1]
 elif PC==3:
-    PC_choise="tijera"
+    PC_choise=opciones[2]
 
-if (nombre=="piedra") or (nombre=="papel") or (nombre=="tijera"):
+if nombre in opciones:
     verificacion=True
 else:
     verificacion=False
     while verificacion==False:
         print("ERROR!")
         nombre=input("por favor,escoge: piedra, papel o tijera => ")
-        if (nombre=="piedra") or (nombre=="papel") or (nombre=="tijera"):
+        if nombre in opciones:
             verificacion=True
             break
 
