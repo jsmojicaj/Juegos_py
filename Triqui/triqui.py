@@ -1,5 +1,42 @@
 
 import random
+def evaluate(state):
+    triples = [state[0:3], state[3:6], state[6:9], state[::3], state[1::3], state[2::3], [state[0], state[4], state[8]], [state[2], state[4], state[6]]]
+    if ["x","x","x"] in triples:
+        return 100
+    elif ["o","o","o"] in triples:
+        return -100
+    else:
+        return 0
+    
+def minimax(state, depth, maximizing_player):
+    if depth == 0 or ["x","x","x"] in triples or ["o","o","o"] in triples:
+        return evaluate(state), None
+
+    if maximizing_player:
+        max_eval = float('-inf')
+        best_move = None
+        for i in range(9):
+            if state[i] == " ":
+                state[i] = "x"
+                eval, _ = minimax(state, depth-1, False)
+                state[i] = " "
+                if eval > max_eval:
+                    max_eval = eval
+                    best_move = i
+        return max_eval, best_move
+    else:
+        min_eval = float('inf')
+        best_move = None
+        for i in range(9):
+            if state[i] == " ":
+                state[i] = "o"
+                eval, _ = minimax(state, depth-1, True)
+                state[i] = " "
+                if eval < min_eval:
+                    min_eval = eval
+                    best_move = i
+        return min_eval, best_move
 TEMPLATE_FIELD=[" "," "," "," "," "," "," "," "," "]
 TEMPLATE_FIELD_NUMBER = '|0|1|2|\n|3|4|5|\n|6|7|8|\n'
 registro=[]
@@ -41,6 +78,6 @@ while resultado=="vacio":
     if ["o","o","o"] in triples: resultado="Gana el PC"
     if len(registro)>8: resultado="Empate"
     if resultado != "vacio": print(resultado)
-    
+
 
 
